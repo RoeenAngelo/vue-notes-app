@@ -2,12 +2,13 @@
 import { ref } from 'vue';
 import Note from '@/components/Notes/Note.vue'
 import { useStoreNotes } from '@/stores/storeNotes'
+import AddEditNote from '../components/Notes/AddEditNote.vue';
 
 /*
 	Notes
 */
 	const newNote = ref('')
-	const newNoteRef = ref(null)
+	const addEditNoteRef = ref(null)
 
 /*
 	Store
@@ -20,7 +21,9 @@ import { useStoreNotes } from '@/stores/storeNotes'
 		storeNotes.addNote(newNote.value)
 		
 		newNote.value = ''
-		newNoteRef.value.focus()
+		addEditNoteRef.value.focusTextarea()
+		
+		
 	}
 
 
@@ -28,8 +31,25 @@ import { useStoreNotes } from '@/stores/storeNotes'
 
 
 <template>
+	
 	<div class="notes">
-		<div class="card has-background-success-dark p-4 mb-5">
+		<AddEditNote
+			v-model="newNote"
+			ref="addEditNoteRef"
+			placeholder="Add a new note"
+		>
+			<template v-slot:buttons>
+				<button
+						@click="addNote"
+						:disabled="!newNote"
+					  class="button is-link has-background-success"
+					>
+						Add New Note
+					</button>
+			</template>
+		</AddEditNote>
+
+		<!-- <div class="card has-background-success-dark p-4 mb-5">
 			<div class="field">
 				<div class="control">
 					<textarea
@@ -54,7 +74,7 @@ import { useStoreNotes } from '@/stores/storeNotes'
 				</div>
 			</div>
 		</div>
-		
+		 -->
 		<Note 
 			v-for="note in storeNotes.notes"
 			:key="note.id"

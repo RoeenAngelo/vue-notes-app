@@ -17,7 +17,7 @@ import { ref } from 'vue';
 			<div class="container is-max-desktop px-2">
 				<div class="navbar-brand">
 						<div class="navbar-item is-size-4 is-family-monospace">
-							Notes
+							Notebook
 						</div>
 						<a
 							@click.prevent="showMobileNav = !showMobileNav"
