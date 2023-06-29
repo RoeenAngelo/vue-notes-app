@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue';
+import { vAutofocus } from '@/directives/vAutofocus'
 
 /*
   Props
-
 */
   const props = defineProps({
   modelValue: {
@@ -25,7 +25,6 @@ import { ref } from 'vue';
 
 /*
   Emits
-
 */
   const emit = defineEmits(['update:modelValue'])
 
@@ -63,6 +62,8 @@ import { ref } from 'vue';
 					  class="textarea"
 					  :placeholder="props.placeholder"
 						ref="textareaRef"
+            v-autofocus
+            maxlength="100"
 					/>
 
 		

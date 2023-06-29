@@ -35,6 +35,8 @@ export const useStoreNotes = defineStore('storeNotes', {
       let index = this.notes.findIndex(item => item.id === id)
 
       this.notes[index].content = content
+
+
     }
   },
   getters: {
@@ -42,6 +44,14 @@ export const useStoreNotes = defineStore('storeNotes', {
       return (id) => {
         return state.notes.filter(item => item.id === id)[0].content
       }
+    },
+    totalNotesCount: (state) => {
+      return state.notes.length
+    },
+    totalCharactersCount: (state) => {
+      let count = 0
+      state.notes.forEach(item => count += item.content.length)
+      return count
     }
   }
 })

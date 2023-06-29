@@ -22,7 +22,7 @@ import { useRoute, useRouter } from 'vue-router'
   noteContent.value = storeNotes.getNoteContent(route.params.id) 
 
 /*
-  Note
+  HandleSaveClicked
 */
   function handleSaveClicked() {
    storeNotes.updateNote(route.params.id, noteContent.value)
