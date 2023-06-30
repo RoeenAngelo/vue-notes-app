@@ -2,6 +2,12 @@
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router'
 import { onClickOutside } from '@vueuse/core'
+import { useStoreNotes } from '@/stores/storeNotes'
+
+/*
+	Store
+*/
+  const storeNotes = useStoreNotes()
 
 /*
   Props
@@ -10,6 +16,10 @@ import { onClickOutside } from '@vueuse/core'
     modelValue: {
       type: Boolean,
       default: false
+    },
+    noteId: {
+      type: String,
+      required: true
     }
   })
 
@@ -37,7 +47,7 @@ import { onClickOutside } from '@vueuse/core'
 */
 
   function handleKeyboard(e) {
-    console.log('closed')
+
     if (e.key === 'Escape') closeModal()
   }
 
@@ -48,6 +58,8 @@ import { onClickOutside } from '@vueuse/core'
   onUnmounted(() => {
     document.removeEventListener('keyup', handleKeyboard)
   })
+
+
 </script>
 
 <template>
@@ -81,6 +93,7 @@ import { onClickOutside } from '@vueuse/core'
         </button>
         <button
           class="button is-danger"
+          @click="storeNotes.deleteNote(noteId)"
         >
           Delete
         </button>

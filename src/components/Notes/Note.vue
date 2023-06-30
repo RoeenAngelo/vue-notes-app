@@ -56,7 +56,6 @@ const props = defineProps({
 				<RouterLink :to="`/editNote/${ note.id }`"
 				  class="card-footer-item"
 				  href="#"
-          @click=""
 				>
           Edit
         </RouterLink>
@@ -70,6 +69,7 @@ const props = defineProps({
 			<ModalDeleteNote
 				v-if="modals.deleteNote"
 				v-model="modals.deleteNote"
+				:noteId="note.id"
 			/>
 	</div>
 </template>
