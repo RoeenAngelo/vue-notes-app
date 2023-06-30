@@ -30,7 +30,7 @@ import { useWatchCharacters} from '@/use/useWatchCharacters'
   }
 
 /*
-	Keyboard Control (press escape key to close modal)
+	Keyboard Control (press enter to save)
 */
   function handleKeyboard(e) {
 
