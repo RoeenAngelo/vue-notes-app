@@ -1,9 +1,9 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import AddEditNote from '../components/Notes/AddEditNote.vue';
 import { useStoreNotes } from '@/stores/storeNotes'
 import { useRoute, useRouter } from 'vue-router'
-
+import { useWatchCharacters} from '@/use/useWatchCharacters'
 /*
   Router
 */
@@ -29,6 +29,26 @@ import { useRoute, useRouter } from 'vue-router'
    router.push('/')
   }
 
+/*
+	Keyboard Control (press escape key to close modal)
+*/
+  function handleKeyboard(e) {
+
+  if (e.key === 'Enter') handleSaveClicked()
+  }
+
+  onMounted(() => {
+  document.addEventListener('keyup', handleKeyboard)
+  })
+
+  onUnmounted(() => {
+  document.removeEventListener('keyup', handleKeyboard)
+  })
+
+/*
+	Watch Characters
+*/
+  useWatchCharacters(noteContent)
 
 </script>
 
